@@ -18,22 +18,24 @@ eureka:
 ## lower-case-service-id is mandatory, otherwise is retrieved in upper case from Eureka
 spring:
   application:
-    name: gateway-acl
+    name: gateway
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
-      default-filters:
-        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
-      globalcors: ## CORS Configuration
-        cors-configurations:
-          '[/**]': ## For all routes
-            allowedOrigins: ${ALLOWED_ORIGINS:*} # With '*' we allow all origins. We can restrict by indicating domains or ip + port, e.g. http://localhost:3000 (where our front is, or a Vercel domain)
-            allowedHeaders: "*" ## All headers allowed
-            allowedMethods:
-            - POST
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
+              lower-case-service-id: true
+          default-filters:
+            - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+          globalcors:
+            cors-configurations:
+              '[/**]': ## For all routes
+                allowedOrigins: ${ALLOWED_ORIGINS:*} # With '*' we allow all origins. We can restrict by indicating domains or ip + port, e.g. http://localhost:3000 (where our front is, or a Vercel domain)
+                allowedHeaders: "*" ## All headers allowed
+                allowedMethods:
+                  - POST
       
 
 ## We enable the Actuator API to be able to access <<host>>/actuator/gateway/routes
@@ -42,7 +44,7 @@ spring:
 management:
   endpoint:
     gateway:
-      enabled: ${ROUTE_TABLES_ENABLED:true}
+      access: ${ROUTE_TABLES_ENABLED:read_only}
   endpoints:
     web:
       exposure:
