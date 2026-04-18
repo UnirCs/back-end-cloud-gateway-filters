@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.0.1</version>
+        <version>4.0.5</version>
         <relativePath/>
     </parent>
     <groupId>com.unir</groupId>
@@ -15,7 +15,7 @@
     <description>Gateway o Proxy Inverso con filtros</description>
     <properties>
         <java.version>25</java.version>
-        <spring-cloud.version>2025.1.0</spring-cloud.version>
+        <spring-cloud.version>2025.1.1</spring-cloud.version>
     </properties>
     <dependencies>
         <dependency>
@@ -25,7 +25,6 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway-server-webflux</artifactId>
-            <version>4.3.0</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
